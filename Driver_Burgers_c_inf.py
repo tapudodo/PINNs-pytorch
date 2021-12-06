@@ -11,11 +11,8 @@ import matplotlib.gridspec as gridspec
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from src.PINNmodels import PhysicsInformedNN, parser,device
 import torch
-import torch.optim as optim               # optimizers e.g. gradient descent, ADAM, etc.
-# from src.plotting import newfig, savefig
+import torch.optim as optim     # optimizers e.g. gradient descent, ADAM, etc.
 
-# from scipy.interpolate import griddata
-# from mpl_toolkits.mplot3d import Axes3D
 
 args = parser.parse_args()
 
