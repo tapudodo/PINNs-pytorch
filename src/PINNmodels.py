@@ -12,10 +12,10 @@ parser.add_argument('--mode', default='train', type=str) # mode = 'train' or 'te
 parser.add_argument('--lr', default=1e-3, type=float) # learning rate
 parser.add_argument('--load', default=True, type=bool) # load model before training
 parser.add_argument('--random_seed', default=1234, type=int)
-parser.add_argument('--epoch', default=20001, type=int)
-parser.add_argument('--Ntrain', default=100,type=int) # train set. for inden, 2000. for inference 100
-parser.add_argument('--Nftrain', default=10000,type=int) # train set. 
-parser.add_argument("--nnlayers", default=[2, 20, 20, 20, 20, 20, 20, 20, 20, 1])
+parser.add_argument('--epoch', default=2001, type=int)
+parser.add_argument('--Ntrain', default=400,type=int) # train set. for inden, 2000. for inference 100
+parser.add_argument('--Nftrain', default=5000,type=int) # train set. 
+parser.add_argument("--nnlayers", default=[2, 100, 100, 100, 100, 100, 100, 100, 100, 1])
 
 # parser.add_argument('--input_dim', default=4, type=int) # input dimension = spatial + temporal
 # parser.add_argument('--output_dim', default=1, type=int) # output dimension = 1

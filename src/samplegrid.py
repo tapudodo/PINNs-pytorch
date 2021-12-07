@@ -7,9 +7,14 @@ def samplegrid_v2(input,Nsample,axe,axevalue):
         if ind_input == axe:
             tmp = np.ones( (Nsample,1) )*axevalue
         else:
-            input_tmp = input[ind_input]
-            id_tmp = np.random.choice(input_tmp.size-2, Nsample)
-            tmp = input_tmp[id_tmp+1]
+            if ind_input==3 :
+                input_tmp = input[ind_input]
+                id_tmp = np.random.choice(input_tmp.size, Nsample)
+                tmp = input_tmp[id_tmp]
+            else:
+                input_tmp = input[ind_input]
+                id_tmp = np.random.choice(input_tmp.size-2, Nsample)
+                tmp = input_tmp[id_tmp+1]
         outputlist = np.append(outputlist, tmp.reshape( (-1,1) ), axis = 1 )
     output = np.vstack(outputlist)
     return output

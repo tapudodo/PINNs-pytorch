@@ -104,8 +104,8 @@ if __name__ == "__main__":
 
         # params = list(model.parameters())
         optimizer = optim.LBFGS(model.parameters(), lr=1e-3, 
-                              max_iter = 50000, 
-                              max_eval = 50000, #None, 
+                              max_iter = 5001, 
+                              max_eval = 5001, #None, 
                               tolerance_grad = 1e-05, 
                               tolerance_change = 1e-09, 
                               history_size = 100, 
@@ -161,7 +161,3 @@ if __name__ == "__main__":
     
     # error_vec, u_pred = model.test(X_test,u)
     # print('Test Error: %.5f'  % (error_vec))
-
-
-    
-    

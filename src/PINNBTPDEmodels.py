@@ -13,11 +13,11 @@ parser.add_argument('--mode', default='train', type=str) # mode = 'train' or 'te
 parser.add_argument('--lr', default=1e-3, type=float) # learning rate
 parser.add_argument('--load', default=True, type=bool) # load model before training
 parser.add_argument('--random_seed', default=1234, type=int)
-parser.add_argument('--epoch', default=20001, type=int)
+parser.add_argument('--epoch', default=2001, type=int)
 parser.add_argument('--N_BC_train', default=1000,type=int) # train set. for inden, 2000. for inference 100
-parser.add_argument('--N_IC_train', default=1000,type=int) # train set. for inden, 2000. for inference 100
-parser.add_argument('--N_f_train', default=10000,type=int) # train set. 
-parser.add_argument("--nnlayers", default=[4, 100, 100, 100, 100, 2])
+parser.add_argument('--N_IC_train', default=3000,type=int) # train set. for inden, 2000. for inference 100
+parser.add_argument('--N_f_train', default=50000,type=int) # train set. 
+parser.add_argument("--nnlayers", default=[4, 100, 100, 100, 100, 100, 100, 100, 2])
 parser.add_argument('--dxi', default=100,type=int) # 100 point per 2 \mu m
 parser.add_argument('--deta', default=100,type=int) # 100 point per 2 \mu m
 parser.add_argument('--dz', default=40,type=int) # 40 point per 2 \mu m
