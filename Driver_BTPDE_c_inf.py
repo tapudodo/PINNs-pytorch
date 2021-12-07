@@ -101,15 +101,7 @@ if __name__ == "__main__":
     model = PINNBTPDENN(args.nnlayers,args.diffusivity,args.delta,args.Delta,args.bvalue,[[0],[0],[1]]).to(device)
 
     if args.mode == 'train':
-
         # params = list(model.parameters())
-        optimizer = optim.LBFGS(model.parameters(), lr=1e-3, 
-                              max_iter = 5001, 
-                              max_eval = 5001, #None, 
-                              tolerance_grad = 1e-05, 
-                              tolerance_change = 1e-09, 
-                              history_size = 100, 
-                              line_search_fn = 'strong_wolfe')
         'Adam Optimizer'
         optimizerAdam = torch.optim.Adam(model.parameters())
         start_time = time.time()    
@@ -133,7 +125,13 @@ if __name__ == "__main__":
                     )
                 )
 
-
+        optimizer = optim.LBFGS(model.parameters(), lr=1e-3, 
+                              max_iter = 1001, 
+                              max_eval = 1001, #None, 
+                              tolerance_grad = 1e-06, 
+                              tolerance_change = 1e-09, 
+                              history_size = 100, 
+                              line_search_fn = 'strong_wolfe')
         def closure():
             optimizer.zero_grad()
             loss = model.loss(Input_IC_train,Ones_IC_train,
@@ -147,7 +145,6 @@ if __name__ == "__main__":
                 # print(loss,error_vec)
                 print(loss)
             return loss
-
         optimizer.step(closure)
 
 
@@ -159,5 +156,7 @@ if __name__ == "__main__":
         model.load_state_dict(torch.load('PINNs_BTPDE.pth') )
         model.eval()
     
+
+
     # error_vec, u_pred = model.test(X_test,u)
     # print('Test Error: %.5f'  % (error_vec))
