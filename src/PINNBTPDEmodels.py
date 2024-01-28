@@ -34,7 +34,7 @@ parser.add_argument('--bvalue', default=500,type=float)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class PINNBTPDENN(nn.Module):
-    def __init__(self,layerslist,diffusivity,delta,Delta,bvalue,dir):
+    def __init__(self,layerslist,diffusivity,delta,Delta,bvalue,dir,lb,ub):
         super(PINNBTPDENN, self).__init__()
         #input dim: 2 variables, spatial x and temporal t
         #output dim: 1. u    
@@ -42,6 +42,9 @@ class PINNBTPDENN(nn.Module):
         'loss function'
         self.loss_function = nn.MSELoss(reduction ='mean')
         # self.loss_function = nn.L1Loss(reduction ='mean')
+
+        self.lb = torch.from_numpy(lb).float().to(device)
+        self.ub = torch.from_numpy(ub).float().to(device)
 
         self.diffusivity = diffusivity
         self.delta = delta
@@ -69,8 +72,9 @@ class PINNBTPDENN(nn.Module):
         # X is stack of x and t
         if torch.is_tensor(X) != True:         
             X = torch.from_numpy(X)
-
-        H = self.layers(X.float())
+        # H = self.layers(X.float())
+        H = 2.0*(X - self.lb)/(self.ub - self.lb) - 1.0
+        H = self.layers(H.float())
 
         Hreal = H[:,[0]]
         Himag = H[:,[1]]

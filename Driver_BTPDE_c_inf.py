@@ -23,6 +23,7 @@ np.random.seed(args.random_seed)
 if __name__ == "__main__":
     radius = args.radius
     demiheight = args.demiheight
+
     Coord_xi = np.linspace(-radius,radius,args.dxi*radius+1)
     Coord_eta = np.linspace(-radius,radius,args.deta*radius+1)
     Coord_z = np.linspace(-demiheight,demiheight,args.dz*demiheight+1)
@@ -98,7 +99,7 @@ if __name__ == "__main__":
 
 
     # Neural network model
-    model = PINNBTPDENN(args.nnlayers,args.diffusivity,args.delta,args.Delta,args.bvalue,[[0],[0],[1]]).to(device)
+    model = PINNBTPDENN(args.nnlayers,args.diffusivity,args.delta,args.Delta,args.bvalue,[[0],[0],[1]],lb,ub).to(device)
 
     if args.mode == 'train':
         # params = list(model.parameters())
